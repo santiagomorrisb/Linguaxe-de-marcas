@@ -1,0 +1,30 @@
+XPath con escenario de equipamento informático (básico)
+Cuestionario: https://wiki.cifprodolfoucha.es/index.php?title=XPath_con_escenario_de_equipamento_inform%C3%A1tico_(b%C3%A1sico)
+
+Solución a cuestionario:
+Pregunta 1.
+  /equipos/máquina
+
+Pregunta 2.
+  /equipos/máquina/harware
+
+Pregunta 3.
+  /equipos/máquina/config
+
+Pregunta 4.
+  /equipos/máquina/config/fabricante
+
+Pregunta 5.
+  //disco
+
+Pregunta 6.
+  /equipos/máquina/config/IP
+
+Pregunta 7.
+  /equipos/máquina/@nome
+
+Pregunta 8.
+  /equipos/máquina[hardware/gravadora[@tipo="DVD"]]/@nome
+
+Pregunta 9.
+  /equipos/máquina/config[role]/OS
