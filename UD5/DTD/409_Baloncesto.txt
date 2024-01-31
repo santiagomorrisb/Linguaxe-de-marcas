@@ -1,0 +1,62 @@
+Escribe un documento XML que permita guardar la información de dos equipos de baloncesto y su correspondiente documento DTD que permita su validación.
+
+El nodo raíz del documento XML será equipos_de_baloncesto, el cual contendrá dos elementos equipo.
+
+De cada equipo, se debe almacenar:
+* nombre
+* ciudad
+* entrenador
+* jugadores
+
+De cada jugador, se debe guardar:
+* nombre
+* posicion: deberá representarse mediante un atributo y sus valores pueden ser (Base, Escolta, Alero o Pivot).
+* nacionalidad
+
+<!DOCTYPE equipos_de_baloncesto [
+  <!ELEMENT equipos_de_baloncesto (equipo, equipo)>
+  <!ELEMENT equipo (nombre, ciudad, entrenador, jugadores)>
+  <!ELEMENT nombre (#PCDATA)>
+  <!ELEMENT ciudad (#PCDATA)>
+  <!ELEMENT entrenador (#PCDATA)>
+  <!ELEMENT jugadores (jugador, jugador, jugador, jugador)>
+  <!ELEMENT jugador (nombre, posicion, nacionalidad)>
+  <!ATTLIST jugador
+    posicion (Base | Escolta | Alero | Pivot) #REQUIRED
+  >
+  <!ELEMENT nacionalidad (#PCDATA)>
+]>
+
+<equipos_de_baloncesto>
+  <equipo>
+    <nombre>Equipo A</nombre>
+    <ciudad>Madrid</ciudad>
+    <entrenador>Carlos García</entrenador>
+    <jugadores>
+      <jugador posicion="Base">
+        <nombre>Mario Veiga</nombre>
+        <nacionalidad>Español</nacionalidad>
+      </jugador>
+      <jugador posicion="Escolta">
+        <nombre>Cristian Gonzáles</nombre>
+        <nacionalidad>Español</nacionalidad>
+      </jugador>
+    </jugadores>
+  </equipo>
+
+  <equipo>
+    <nombre>Equipo B</nombre>
+    <ciudad>Barcelona</ciudad>
+    <entrenador>Peto</entrenador>
+    <jugadores>
+      <jugador posicion="Alero">
+        <nombre>Pablo B)</nombre>
+        <nacionalidad>Argentino</nacionalidad>
+      </jugador>
+      <jugador posicion="Pivot">
+        <nombre>Álvaro kiko</nombre>
+        <nacionalidad>Español</nacionalidad>
+      </jugador>
+    </jugadores>
+  </equipo>
+</equipos_de_baloncesto>

@@ -1,0 +1,67 @@
+Se quiere llevar a cabo una gestión de los paneles informativos que se pueden encontrar en una autopista. 
+
+Para ello, se va a utilizar un fichero XML que debe cumplir las siguientes premisas:
+1) El nodo raíz paneles dispone de uno o más elementos evento.
+2) Cada elemento evento está compuesto por los siguientes elementos obligatorios: via, pk, retencion y sentido. Además, contiene un elemento carrilescortados que es optativo.
+3) El elemento evento dispone de dos atributos: tipo (obligatorio) y fecha (optativo).
+4) El elemento via está formado por los siguientes elementos: nombre, ref, origen, destino. Además, podrá contener un elemento doble o un elemento sentido. También, contendrá un elemento carriles.
+5) El elemento doble será un elemento vacío.
+6) El elemento sentido contendrá una cadena de texto.
+7) El elemento retencion es un elemento vacío que contiene un atributo long.
+8) El elemento carrilescortados tendrá un atributo obligatorio denominado valor el cual solo podrá tener los valores 1, 2, 3 y 4.
+
+Elabora un documento XML a modo de ejemplo, el cual incluya un DTD interno que permita validar la correcta estructura del fichero XML.
+
+<!DOCTYPE paneles [
+  <!ELEMENT paneles (evento+)>
+  <!ELEMENT evento (via, pk, retencion, sentido, carrilescortados?)>
+  <!ATTLIST evento
+    tipo CDATA #REQUIRED
+    fecha CDATA #IMPLIED
+  >
+  <!ELEMENT via (nombre, ref, origen, destino, (doble | sentido), carriles)>
+  <!ELEMENT doble EMPTY>
+  <!ELEMENT sentido (#PCDATA)>
+  <!ELEMENT retencion EMPTY>
+  <!ATTLIST retencion
+    long CDATA #REQUIRED
+  >
+  <!ELEMENT carrilescortados EMPTY>
+  <!ATTLIST carrilescortados
+    valor (1 | 2 | 3 | 4) #REQUIRED
+  >
+  <!ELEMENT nombre (#PCDATA)>
+  <!ELEMENT ref (#PCDATA)>
+  <!ELEMENT origen (#PCDATA)>
+  <!ELEMENT destino (#PCDATA)>
+  <!ELEMENT carriles (#PCDATA)>
+  <!ELEMENT pk (#PCDATA)>
+]>
+
+<paneles>
+  <evento tipo="Informativo" fecha="2022-03-01">
+    <via>
+      <nombre>A-1</nombre>
+      <ref>KM 50</ref>
+      <origen>Madrid</origen>
+      <destino>Burgos</destino>
+      <doble/>
+      <carriles>2</carriles>
+    </via>
+    <pk>50</pk>
+    <retencion long="10"/>
+    <sentido>Norte</sentido>
+  </evento>
+  <evento tipo="Obras">
+    <via>
+      <nombre>A-2</nombre>
+      <ref>KM 30</ref>
+      <origen>Zaragoza</origen>
+      <destino>Barcelona</destino>
+      <carriles>1</carriles>
+    </via>
+    <pk>30</pk>
+    <retencion long="5"/>
+    <carrilescortados valor="3"/>
+  </evento>
+</paneles>
