@@ -66,26 +66,20 @@
 /universidad/asignaturas/asignatura[@id=/universidad/alumnos/alumno[nombre='Luisa']/estudios/asignaturas/asignatura/@codigo]/nombre
 
 23. Primer apellido de los alumnos matriculados en Ingeniería del Software.
-#Definir apellidos
-/universidad/alumnos/alumno/apellido1
+/universidad/alumnos/alumno[estudios/asignaturas/asignatura/@id='a02']/apellido1
 
-#Determinar Còdigo
-Comprobar código de todos los alumnos
-/universidad/alumnos/alumno/carrera/@codigo
-
-Determinar codigo asignatura
-/universidad/asignaturas/asignatura[@id='a02']
-
-#Validar codigo
-/universidad[]
 
 24. Nombre de las carreras que estudian los alumnos matriculados en la asignatura Tecnología de los Alimentos.
+/universidad/asignaturas/asignatura[nombre='Tecnología de los Alimentos']/../../carrera/nombre
 
 
 25. Nombre de los alumnos matriculados en carreras que no tienen subdirector.
+/universidad/alumnos/alumno[not(estudios/carrera/@codigo = /universidad/carreras/carrera[subdirector]/@id)]/nombre
 
 
 26. Nombre de las alumnos matriculados en asignaturas con 0 créditos prácticos y que estudien la carrera de I.T. Informática.
+/universidad/alumnos/alumno[estudios/asignaturas/asignatura[creditos_practicos = 0 and @titulacion='c01']]/nombre
 
 
 27. Nombre de los alumnos que estudian carreras cuyos planes son anteriores a 2002.
+/universidad/alumnos/alumno[estudios/carrera/@codigo = /universidad/carreras/carrera[plan < 2002]/@id]/nombre
